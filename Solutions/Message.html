@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React practice</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        .title {
+            background-color: grey;
+            color: white;
+            border-bottom: 1px solid black;
+        }
+
+        .titleText {
+            width: 90%;
+            display: inline-block;
+        }
+
+        .closeButton {
+            width: 8%;
+            text-align: center;
+            display: inline-block;
+            border: 1px solid black;
+            color: black;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        function Message(props) {
+        const [render, setRender] = React.useState(true);
+        if (props.title == undefined||render==false) {
+          return "";
+        } else {
+          return (
+            <div
+              style={{
+                margin: "auto",
+                border: "1px solid black",
+                width: "200px",
+              }}
+            >
+              <Title
+                setRender={setRender}
+                text={props.title}
+              />
+              <Body text={props.body} />
+            </div>
+          );
+        }
+      }
+      //
+      function Title(props) {
+    
+        return (
+          <header className="title">
+            <span className="titleText">
+              {props.text ? props.text : "Default title"}
+            </span>
+            <span
+              onClick={()=>props.setRender(false)}
+              className="closeButton"
+            >
+              X
+            </span>
+          </header>
+        );
+      }
+    
+      //
+      function Body(props) {
+        return (
+          <section style={{ minHeight: "20px" }}>
+            {props.text ? props.text : ""}
+          </section>
+        );
+      }
+      //
+      ReactDOM.render(
+        <Message
+          title="System message"
+          body="Your computer will shutdown in 5 minutes...."
+        />,
+        document.getElementById("root")
+      );
+    </script>
+</body>
+
+</html>
