@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hello World</title>
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+  <!-- Don't use this in production: -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <!--
+      Create a Coutner component that allows to add and subtruct 1 with buttons 
+      to the current count and display it 
+    -->
+  <script type="text/babel">
+    //
+      /*   function Counter(){
+          const [value,setValue] = React.useState(0);
+
+          function addHandler(){
+            return setValue(value+1)
+          }
+
+          function subtructHandler(){
+            return setValue(value-1)
+          }
+
+          return(
+            <>
+            <h1>Counter:{value}</h1>
+            <button onClick={addHandler}>add</button>
+            <button onClick={subtructHandler}>subtruct</button>
+            </>
+          )
+        }
+ */
+        class Counter extends React.Component{
+          constructor(props){
+            super(props);
+            this.state={
+              value:props.value
+            }
+        }
+         add=()=>{
+         this.setState({value:this.state.value+1})
+         }
+         sub=()=> {
+         this.setState({value:this.state.value-1})
+         }
+        
+          render(){
+            return(
+              <>
+               <h1>Counter:{this.state.value}</h1>
+               <button onClick={this.add}>add</button>
+               <button onClick={this.sub}>subtruct</button>
+              </>
+            )
+          }
+        }
+
+
+        ReactDOM.render(<Counter value={5}/>,document.getElementById('root'));
+    </script>
+
+</body>
+
+</html>

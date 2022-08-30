@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>4 State events input alert- practice</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <!--
+      Create Component that contains an input text and a button 
+      that when clicking on the button it displays the text entered in the text input 
+    -->
+    <script type="text/babel">
+        /*     function NameAlert() {
+         const[value,setValue] = React.useState()
+
+         function changeHandler(e){
+            return setValue(e.target.value)
+         }
+
+        return (
+          <>
+            <input onChange={changeHandler} type="text" placeholder="enter text" />
+            <button type="button" onClick={()=>alert(value)}>Input alert!</button>
+          </>
+        );
+      } */
+
+      class NameAlert extends React.Component {
+        constructor() {
+            super();
+          this.state = {
+            value: "",
+          };
+        }
+        render() {
+            console.log(this);
+          return (
+            <>
+              <input
+                onChange={(e) => this.setState({ value: e.target.value })}
+                type="text"
+                placeholder="enter text"
+              />
+              <button type="button" onClick={() => alert(this.state.value)}>
+                Input alert!
+              </button>
+            </>
+          );
+        }
+      }
+      ReactDOM.render(<NameAlert />, document.getElementById("root"));
+    </script>
+</body>
+
+</html>
